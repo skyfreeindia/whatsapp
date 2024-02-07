@@ -1,7 +1,8 @@
 //********************************************************************************/
-//Step 1: Create a PHP website with domain like https://webhook.<your domin>.org and add this code to index.php
-//Step 2: Add a webhook to your reseller eCommerce Catalog like https://webhook.<your domin>.org/e	
-//Setp 3: Modify <Add your domain connected to short.io> with the short link URL
+//Step 1: Create a PHP website with domain like https://webhook.<your domain>.org and add this code as customcheckout.php
+//Step 2: Add a webhook to your reseller eCommerce Catalog like https://webhook.<your domain>.org/customcheckout.php
+//Step 3: Create an account in short.io and add a sub domain like pay.<your domain>.org
+//Setp 3: Modify <Add your domain connected to short.io> with the short.io domain
           //Modify <Add your key> with your short.io API key
           //Modify <Add your reseller domain> with your domain name
           //Modify <Add your reseller api key>

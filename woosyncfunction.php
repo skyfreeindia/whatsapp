@@ -10,7 +10,9 @@
 //           to fetch the product id so this might slow down your website.
 //	     short.io account is mandatory which is free
 	
-<?php
+<?php 
+
+// Remove above lines when adding to wordpress  
 
 /*************************************************************************************************************************************************/
 /*********************************************** This removes checkout cart message **************************************************************/

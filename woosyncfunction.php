@@ -1,13 +1,27 @@
 /*************************************************************************************************************************************************/
-/*********************************************** This removes checkout cart message ****************************************************************/
+/*************************************************************************************************************************************************/
+/*************************************************************************************************************************************************/
+
+// Step 1 : Add a webhook like  https://<your domain>/wp-json/webhook/v1/catalog to your reseller ecommerce panel
+// Step 2 : Modify the 205 & 202 with your short.io API key
+// Step 3 : Modify the 262 line with your reseller domaain and API key
+
+// Caution : In the wehook provided by botsailor their is not retailer id which is product id in woocommerce, so we are runing a SQL against the database 
+//           to fetch the product id so this might slow down your website.
+//	     short.io account is mandatory which is free
+	
+<?php
+
+/*************************************************************************************************************************************************/
+/*********************************************** This removes checkout cart message **************************************************************/
 /*************************************************************************************************************************************************/
 
 add_filter( 'wc_add_to_cart_message_html', '__return_false' );
 
-
 /*************************************************************************************************************************************************/
 /************************************ Below code will help to create direct add to cart link for multiple products *******************************/
 /*************************************************************************************************************************************************/
+
 function webroom_add_multiple_products_to_cart( $url = false ) {
 	// Make sure WC is installed, and add-to-cart qauery arg exists, and contains at least one comma.
 	if ( ! class_exists( 'WC_Form_Handler' ) || empty( $_REQUEST['add-to-cart'] ) || false === strpos( $_REQUEST['add-to-cart'], ',' ) ) {
@@ -95,10 +109,9 @@ function woo_hack_invoke_private_method( $class_name, $methodName ) {
 	return call_user_func_array( array( $method, 'invoke' ), $args );
 }
 /*************************************************************************************************************************************************/
-/************************************ Below code will create a webhook to be added in reseller panel *******************************/
+/************************************ Below code will Handle incoming webhook requests  **********************************************************/
 /*************************************************************************************************************************************************/
 
-// Handle incoming webhook requests
 function handle_webhook_request_checkout($request) {
     $data = $request->get_json_params();
 
@@ -254,7 +267,7 @@ function find_product_by_name_and_price($product_name, $price) {
 // Send a message via WhatsApp API
 function send_whatsapp_message($phone_number, $message) {
     // Use the appropriate API URL and parameters for your WhatsApp service
-    $api_url = "https://app.xpressbot.org/api/v1/whatsapp/send?apiToken=<your token>&phoneNumberID=<your whatsapp number ></your>&message=" . urlencode($message) . "&sendToPhoneNumber=" . $phone_number;
+    $api_url = "https://<your reseller domain>/api/v1/whatsapp/send?apiToken=<your token>&phoneNumberID=<your whatsapp number ></your>&message=" . urlencode($message) . "&sendToPhoneNumber=" . $phone_number;
 
     $response = wp_remote_get($api_url);
 
@@ -267,7 +280,10 @@ function send_whatsapp_message($phone_number, $message) {
     return $response_code === 200;
 }
 
-// Hook to initialize your webhook endpoint
+/*************************************************************************************************************************************************/
+/************************************ Hook to initialize your webhook endpoint *******************************************************************/
+/*************************************************************************************************************************************************/
+
 add_action('rest_api_init', 'register_webhook_listener_endpoint');
 
 function register_webhook_listener_endpoint() {
@@ -276,3 +292,6 @@ function register_webhook_listener_endpoint() {
         'callback' => 'handle_webhook_request_checkout',
     ));
 }
+/*************************************************************************************************************************************************/
+/*************************************************************************************************************************************************/
+/*************************************************************************************************************************************************/

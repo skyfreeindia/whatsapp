@@ -10,6 +10,10 @@
 //           to fetch the product id so this might slow down your website.
 //	     short.io account is mandatory which is free
 	
+//**************************************************************************************************************************************************/
+//If you need us to install we can do for ₹1500 / Account. Contact on support@skyfree.org.in
+//**************************************************************************************************************************************************/
+	
 <?php 
 
 // Remove above lines when adding to wordpress  

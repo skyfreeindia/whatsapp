@@ -3,8 +3,8 @@
 /*************************************************************************************************************************************************/
 
 // Step 1 : Add a webhook like  https://<your domain>/wp-json/webhook/v1/catalog to your reseller ecommerce panel
-// Step 2 : Modify the 205 & 202 with your short.io API key
-// Step 3 : Modify the 262 line with your reseller domaain and API key
+// Step 2 : Modify the 216 & 219 with your short.io API key
+// Step 3 : Modify the 276 line with your reseller domaain and API key
 
 // Caution : In the wehook provided by botsailor their is not retailer id which is product id in woocommerce, so we are runing a SQL against the database 
 //           to fetch the product id so this might slow down your website.
